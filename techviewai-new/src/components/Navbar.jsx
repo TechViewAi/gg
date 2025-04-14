@@ -43,12 +43,6 @@ const Navbar = () => {
           <NavLink onClick={() => scrollToSection('services')}>Services</NavLink>
           <NavLink onClick={() => scrollToSection('testimonials')}>Testimonials</NavLink>
           <NavLink onClick={() => scrollToSection('contact')}>Contact</NavLink>
-          
-          <div className="ml-4">
-            <a href="#get-started" className="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-md transition-all hover:scale-105">
-              Get started
-            </a>
-          </div>
         </div>
         
         {/* Mobile Menu Button */}
@@ -68,9 +62,6 @@ const Navbar = () => {
             <MobileNavLink onClick={() => scrollToSection('services')}>Services</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('testimonials')}>Testimonials</MobileNavLink>
             <MobileNavLink onClick={() => scrollToSection('contact')}>Contact</MobileNavLink>
-            <a href="#get-started" className="block bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md w-full text-center mt-4">
-              Get started
-            </a>
           </div>
         </div>
       )}

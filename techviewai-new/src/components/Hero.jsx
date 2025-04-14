@@ -15,16 +15,51 @@ const Hero = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Enhanced scrollToSection function with more debugging and fallback options
   const scrollToSection = (sectionId) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
+    // Try multiple possible ID formats (lowercase, capitalized, etc.)
+    const possibleIds = [sectionId, sectionId.toLowerCase(), sectionId.charAt(0).toUpperCase() + sectionId.slice(1)];
+    
+    let targetElement = null;
+    
+    // Try each possible ID
+    for (const id of possibleIds) {
+      const element = document.getElementById(id);
+      if (element) {
+        targetElement = element;
+        console.log(`Found element with ID: ${id}`);
+        break;
+      }
+    }
+    
+    // If we found a target element, scroll to it
+    if (targetElement) {
+      // Get the element's position
+      const rect = targetElement.getBoundingClientRect();
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const targetPosition = rect.top + scrollTop - 80; // Adjust for navbar height
+      
+      // Scroll to the element
       window.scrollTo({
-        top: element.offsetTop - 80,
+        top: targetPosition,
         behavior: 'smooth'
       });
+      
+      console.log(`Scrolling to position: ${targetPosition}`);
     } else {
-      console.log(`Element with ID "${sectionId}" not found`);
+      // If all fails, try to scroll by a reasonable amount
+      console.log(`Could not find element with ID "${sectionId}". Attempting fallback scroll.`);
+      window.scrollTo({
+        top: window.innerHeight, // Scroll approximately one viewport height
+        behavior: 'smooth'
+      });
     }
+  };
+
+  // Combined approach: direct link and JavaScript fallback
+  const handleExploreClick = (e) => {
+    e.preventDefault(); // Prevent default anchor behavior
+    scrollToSection('services');
   };
 
   return (
@@ -76,13 +111,15 @@ const Hero = () => {
         </p>
         
         <div className="flex justify-center">
-          <button 
-            onClick={() => scrollToSection('services')}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3 rounded-md text-center transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/20 group flex items-center cursor-pointer"
+          {/* Combined approach using an anchor tag but with custom JavaScript handler */}
+          <a 
+            href="#services"
+            onClick={handleExploreClick}
+            className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-8 py-3 rounded-md text-center transition-all hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/20 group flex items-center cursor-pointer z-20 relative"
             aria-label="Explore our services"
           >
             Explore our services <ArrowRight size={18} className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </button>
+          </a>
         </div>
       </div>
     </section>
