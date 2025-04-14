@@ -1,4 +1,17 @@
 {
   "buildCommand": "cd techviewai-new && npm install && npm run build",
-  "outputDirectory": "techviewai-new/build"
+  "outputDirectory": "techviewai-new/build",
+  "redirects": [
+    { 
+      "source": "/(.*)", 
+      "has": [
+        {
+          "type": "host",
+          "value": "www.techviewai.com"
+        }
+      ],
+      "destination": "https://techviewai.com/$1",
+      "permanent": true
+    }
+  ]
 }
