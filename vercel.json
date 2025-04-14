@@ -1,0 +1,4 @@
+{
+  "buildCommand": "cd techviewai-new && npm install && npm run build",
+  "outputDirectory": "techviewai-new/build"
+}
