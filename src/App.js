@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -31,6 +32,7 @@ const App = () => {
         <Contact />
       </main>
       <Footer />
+      <SpeedInsights />
     </div>
   );
 };
