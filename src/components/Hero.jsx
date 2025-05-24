@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import useInView from '../hooks/useInView';
+import { trackEvent } from '../utils/analytics';
 
 const Hero = () => {
   const [animationPhase, setAnimationPhase] = useState(0);
@@ -31,6 +32,7 @@ const Hero = () => {
   const handleExploreClick = (e) => {
     e.preventDefault();
     scrollToSection('services');
+    trackEvent('click', 'navigation', 'explore_services_button');
   };
 
   return (
